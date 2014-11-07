@@ -6,13 +6,16 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.hostname = "b9apache-berkshelf"
+  config.vm.hostname = "172.17.8.130"
   
-  config.vm.box = "Berkshelf-CentOS-6.5.3"
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "b9centos"
 
-  config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box"
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  config.vm.box_url = "https://github.com/beyond9/b9centos/releases/download/v7.0.0/centos7-20141106.box"
 
-  config.vm.network :private_network, ip: "33.33.33.20"
+  config.vm.network :private_network, ip: "172.17.8.130"
 
   config.berkshelf.enabled = true
 
@@ -25,8 +28,8 @@ Vagrant.configure("2") do |config|
     chef.json.merge!({
       :apache => {
         :sites_path           => "/var/www",
-        :server_port          => "8887",
-        :listen_ports         => ["8887", "443"]
+        :server_port          => "80",
+        :listen_ports         => ["80", "443"]
       }
     })
     
